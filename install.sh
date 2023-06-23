@@ -22,7 +22,6 @@ sudo apt install -o Dpkg::Options::="--force-confold" install -y google-chrome-s
 sudo apt update
 sudo apt autoremove -y
 
-
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING OH MY ZSH                              $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -61,7 +60,6 @@ omz plugin enable pyenv
 omz plugin enable node 
 omz plugin enable scala
 omz plugin enable emojy-clock
-
 
 # sdkman
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -146,7 +144,6 @@ echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.clou
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share/keyrings/cloud.google.gpg
 sudo apt-get update && sudo apt-get install google-cloud-cli
 
-
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING KAFKA                                  $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -190,7 +187,6 @@ mkdir -p ~/.oh-my-zsh/plugins/docker/
 curl -fLo ~/.oh-my-zsh/plugins/docker/_docker https://raw.github.com/felixr/docker-zsh-completion/master/_docker
 
 omz plugin enable docker
-
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING MINIKUBE                               $'
@@ -309,11 +305,3 @@ sudo apt update && sudo apt upgrade -y
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLATION IS FINISHED                          $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-
-
-
-
-
-
-
-
