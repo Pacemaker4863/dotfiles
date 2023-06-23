@@ -19,10 +19,8 @@ sudo apt-get install -y git-flow
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -o Dpkg::Options::="--force-confold" install -y google-chrome-stable_current_amd64.deb
 
-# Editor
-sudo apt install -y neovim
-
 sudo apt update
+sudo apt autoremove -y
 
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -70,23 +68,32 @@ echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo '$                        INSTALLING NEOVIM                                 $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
+sudo apt install -y neovim
+
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
 touch ~/.vimrc
 
-
-
 cat >> ~/.vimrc <<'SH'
+set relativenumber 
+
 if exists('$BASE16_THEME')
       \ && (!exists('g:colors_name') || g:colors_name != 'base16-$BASE16_THEME')
     let base16colorspace=256
     colorscheme base16-$BASE16_THEME
 endif
 
-export EDITOR="nvim"
-export VISUAL="nvim" 
+call plugbegin('~/.vim/plugged')
+  Plug 'vim-airline/vim-airline'
+  Plug 'morhetz/gruvbox'
+  Plug 'tpop/fugitive'
+call plug#end()
 
 SH
 
-
+echo 'export EDITOR="nvim"' >> ~/.zshrc
+export 'VISUAL="nvim"' >> ~/.zshrc
 
 # sdkman
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -129,7 +136,16 @@ curl -fL "https://github.com/coursier/launchers/raw/master/cs-x86_64-pc-linux.gz
 chmod +x cs
 ./cs setup
 
-# TODO Google sdk :: later
+echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+echo '$                        INSTALLING GOOGLE CLOUD SDK                       $'
+echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
+
+sudo apt-get update
+sudo apt-get install apt-transport-https ca-certificates gnupg curl sudo
+echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo tee /usr/share/keyrings/cloud.google.gpg
+sudo apt-get update && sudo apt-get install google-cloud-cli
+
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING KAFKA                                  $'
@@ -202,7 +218,6 @@ echo 'source <(kubectl completion zsh)' >> ~/.zshrc
 echo 'alias k=kubectl' >>~/.zshrc
 echo 'compdef __start_kubectl k' >>~/.zshrc
 
-
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING PYTON/PYENV                            $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -250,7 +265,6 @@ source $HOME/.cargo/env
 sudo apt autoremove -y
 sudo apt update && sudo apt upgrade -y
 
-
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING ALIASES                                $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -277,7 +291,6 @@ mkdir ~/.icons
 git clone https://github.com/ryanoasis/nerd-fonts.git
 bash ~/nerd-fonts/install.sh
 
-
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING I3 Windows Manager                     $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -292,7 +305,6 @@ sudo apt-get install -y arandr
 # Last update
 sudo apt autoremove -y
 sudo apt update && sudo apt upgrade -y
-
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLATION IS FINISHED                          $'
