@@ -231,10 +231,10 @@ echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> $HO
 echo 'eval "$(pyenv init -)"' >> $HOME/.zshrc
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
-echo '$                        INSTALLING OH MY NVM                              $'
+echo '$                        INSTALLING NVM                                    $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | zsh
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
 source $HOME/.zshrc
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -274,11 +274,11 @@ echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 touch ~/.aliases
 # create useful aliases here
-alias vim=nvim
-alias la=exa -al -icons --sort=type
-alias l=exa -l -icons --sort=type
-alias vz=vim $HOME/.zshrc
-alias sz=source $HOME/.zshrc
+alias vim="nvim"
+alias la="exa -al -icons --sort=type"
+alias l="exa -l -icons --sort=type"
+alias vz="vim $HOME/.zshrc"
+alias sz="source $HOME/.zshrc"
 
 echo 'source ~/.aliases' >> $HOME/.zshrc
 source $HOME/.zshrc
