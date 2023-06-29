@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+cp -r .icons ~
+cp -r .themes ~
+cp -r .fonts ~
+
 sudo apt update && sudo apt upgrade -y
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -8,6 +12,7 @@ echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
 sudo apt install -y zip
 sudo apt-get install -y kafkacat
+sudo apt install -y vim 
 sudo apt install -y exa 
 sudo apt install -y curl
 sudo apt install -y wget 
@@ -19,7 +24,7 @@ sudo apt-get install -y git-flow
 
 # Browser
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-sudo apt install -o Dpkg::Options::="--force-confold" install -y google-chrome-stable_current_amd64.deb
+sudo apt install -o Dpkg::Options::="--force-confold" -y ./google-chrome-stable_current_amd64.deb
 
 sudo apt update
 sudo apt autoremove -y
@@ -29,7 +34,7 @@ echo '$                        INSTALLING OH MY ZSH                             
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
 sudo apt -y install zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo y | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING BASE16                               $'
@@ -47,9 +52,8 @@ BASE16_SHELL="$HOME/.config/base16-shell/"
 SH
 
 # Style
-echo base16-materia >> ~/.zshrc
-
-exec zsh
+echo base16_materia >> $HOME/.zshrc
+source $HOME/.zshrc
 
 # OMZ plugin
 omz plugin enable docker
@@ -117,8 +121,9 @@ sdk install jbang
 sdk install jmc 
 sdk install jmeter 
 sdk install kcctl 
-wget https://raw.githubusercontent.com/kcctl/kcctl/main/kcctl_completion
-. kcctl_completion
+wget -O $HOME/kcctl_completion https://raw.githubusercontent.com/kcctl/kcctl/main/kcctl_completion
+source $HOME/kcctl_completion
+
 sdk install kotlin 
 sdk install maven 
 sdk install micronaut 
@@ -281,10 +286,6 @@ echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo '$                        INSTALLING THEMES                                 $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
-# Need to install a gnome theme
-mkdir ~/.fonts
-mkdir ~/.themes
-mkdir ~/.icons
 
 git clone https://github.com/ryanoasis/nerd-fonts.git
 bash ~/nerd-fonts/install.sh
