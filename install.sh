@@ -43,7 +43,7 @@ echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 # base16
 git clone https://github.com/chriskempson/base16-shell.git ~/.config/base16-shell
 
-cat >> ~/.zshrc <<'SH'
+cat >> $HOME/.zshrc <<'SH'
 BASE16_SHELL="$HOME/.config/base16-shell/"
 [ -n "$PS1" ] && \
     [ -s "$BASE16_SHELL/profile_helper.sh" ] && \
@@ -96,8 +96,8 @@ call plug#end()
 
 SH
 
-echo 'export EDITOR="nvim"' >> ~/.zshrc
-export 'VISUAL="nvim"' >> ~/.zshrc
+echo 'export EDITOR="nvim"' >> $HOME/.zshrc
+export 'VISUAL="nvim"' >> $HOME/.zshrc
 
 # sdkman
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -217,25 +217,25 @@ echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/
 sudo apt-get update
 sudo apt-get install -y kubectl
 
-echo 'source <(kubectl completion zsh)' >> ~/.zshrc
-echo 'alias k=kubectl' >>~/.zshrc
-echo 'compdef __start_kubectl k' >>~/.zshrc
+echo 'source <(kubectl completion zsh)' >> $HOME/.zshrc
+echo 'alias k=kubectl' >>$HOME/.zshrc
+echo 'compdef __start_kubectl k' >>$HOME/.zshrc
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING PYTON/PYENV                            $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-echo 'eval "$(pyenv init -)"' >> ~/.zshrc
+echo 'export PYENV_ROOT="$HOME/.pyenv"' >> $HOME/.zshrc
+echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> $HOME/.zshrc
+echo 'eval "$(pyenv init -)"' >> $HOME/.zshrc
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING OH MY NVM                              $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | zsh
-source ~/.zshrc
+source $HOME/.zshrc
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING GIT COMMIT LINT                        $'
@@ -248,8 +248,8 @@ echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 echo '$                        INSTALLING RBENV                                  $'
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 
-sudo apt install rbenv
-source .zshrc
+sudo apt install -y rbenv
+source $HOME/zshrc
 rbenv init
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
@@ -277,10 +277,11 @@ touch ~/.aliases
 alias vim=nvim
 alias la=exa -al -icons --sort=type
 alias l=exa -l -icons --sort=type
-alias vz=vim ~/.zshrc
+alias vz=vim $HOME/.zshrc
+alias sz=source $HOME/.zshrc
 
-echo 'source ~/.aliases' >> ~/.zshrc
-source ~/.zshrc
+echo 'source ~/.aliases' >> $HOME/.zshrc
+source $HOME/.zshrc
 
 echo '$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$'
 echo '$                        INSTALLING THEMES                                 $'
